@@ -31,6 +31,14 @@ DATABASE = "sakila"
 URI = f"{LANGUAGE}://{USER}:{PASSWORD}@{SERVER}/{DATABASE}"
 
 
+# query argparsing
+argparser = argparse.ArgumentParser(description="User Question")
+argparser.add_argument("-p", "--prompt", type=str, help="User query input")
+parse_args = argparser.parse_args()
+prompt = parse_args.prompt
+
+
+
 
 def get_sql_response(prompt: str) -> str:
 
@@ -44,14 +52,14 @@ def get_sql_response(prompt: str) -> str:
 
     global OPENAI_API_KEY, URI
 
-
+    logger.info("SQL Connection")
     cursor = create_engine(URI).connect()
 
-
+    logger.info("Extracting tables...")
     tables = cursor.execute("show tables;").fetchall()
     tables = [e[0] for e in tables]
 
-
+    logger.info("Generating SQL query...")
     db = SQLDatabase.from_uri(URI,
                             sample_rows_in_table_info=1, 
                             include_tables=tables)
@@ -63,10 +71,12 @@ def get_sql_response(prompt: str) -> str:
 
     sql_query = database_chain.invoke({"question": prompt})
 
+    logger.info("SQL Querying...")
     response = cursor.execute(sql_query).fetchall()
 
     context = pd.DataFrame(response).to_markdown()
 
+    logger.info("Generating final response...")
     output_model = ChatOpenAI(model="gpt-4-turbo")
 
     final_prompt = f"""Given the next context, answer the cuestion: 
@@ -82,4 +92,4 @@ def get_sql_response(prompt: str) -> str:
 
 
 if __name__=="__main__":
-    logger.info(f"Chat Response: {()}")
+    logger.info(f"Chat Response: {get_sql_response(prompt)}")
