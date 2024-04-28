@@ -37,7 +37,7 @@ Besides, we'll use public [Query Practices](https://github.com/erzubin/MySQL/blo
 
 ### How to use this repo
 
-First, we need to store the OpenAI API KEY in a `.env` file to load it with the dotenv library and use it as an environment variable. In `notebooks` folder there is a jupyter notebook with a step by step explanation. In `src` folder there is the python code for querying SQL and getting a chat response, besides requirements.txt file. Use examples:
+First, we need to store the OpenAI API KEY in a `.env` file to load it with the dotenv library and use it as an environment variable. In `notebooks` folder there is a jupyter notebook with a step by step explanation and other with the practices. In `src` folder there is the python code for querying SQL and getting a chat response, besides requirements.txt file. Use examples:
 
 
 **Getting a response for a user query**
