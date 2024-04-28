@@ -25,4 +25,22 @@ We will use the [Sakila](https://github.com/jOOQ/sakila) public database. The Sa
 
 
 
-Besides, we'll use public [Query Practices](https://github.com/erzubin/MySQL/blob/master/Practice%20Queries%20on%20Sakila%20DB%20of%20MySQL.txt) on Sakila provided on [MySQL](https://www.mysql.com/) for testing our model. 
+Besides, we'll use public [Query Practices](https://github.com/erzubin/MySQL/blob/master/Practice%20Queries%20on%20Sakila%20DB%20of%20MySQL.txt) on Sakila provided on [MySQL](https://www.mysql.com/) for testing our model.
+
+### Technologies used
+
++ [LangChain](https://www.langchain.com/)
++ [OpenAI](https://openai.com/)
++ [SQLAlchemy](https://www.sqlalchemy.org/)
++ [MySQL](https://www.mysql.com/)
+
+
+### How to use this repo
+
+First, we need to store the OpenAI API KEY in a `.env` file to load it with the dotenv library and use it as an environment variable. In `notebooks` folder there is a jupyter notebook with a step by step explanation. In `src` folder there is the python code for querying SQL and getting a chat response, besides requirements.txt file. Use examples:
+
+
+**Getting a response for a user query**
+```bash
+python chat.py -q "Which actors have the first name ‘Scarlett’?"
+```
