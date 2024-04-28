@@ -1,0 +1,5 @@
+pip install langchain
+pip install langchain-openai
+pip install pandas
+pip install sqlalchemy
+
