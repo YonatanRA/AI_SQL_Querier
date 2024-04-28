@@ -29,7 +29,6 @@ DATABASE = "sakila"
 URI = f"{LANGUAGE}://{USER}:{PASSWORD}@{SERVER}/{DATABASE}"
 
 
-
 def get_sql_response(prompt: str) -> str:
 
     """
