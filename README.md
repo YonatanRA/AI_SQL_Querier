@@ -42,5 +42,5 @@ First, we need to store the OpenAI API KEY in a `.env` file to load it with the 
 
 **Getting a response for a user query**
 ```bash
-python chat.py -q "Which actors have the first name ‘Scarlett’?"
+python chat.py -p "Which actors have the first name ‘Scarlett’?"
 ```
