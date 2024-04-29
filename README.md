@@ -1,6 +1,6 @@
 # AI SQL Querier
 
-This project focuses on making SQL queries using natural language. We will use the MySQL database locally, although it can be easily extended to other databases, local or in cloud, such as PostgreSQL or Snowflake.
+This project focuses on making SQL queries using natural language. We will use the SnowFlake cloud database, although it can be easily extended to other databases, local or in cloud, such as PostgreSQL or MySQL.
 
 The process is as follows:
 
@@ -12,7 +12,7 @@ The process is as follows:
 
 ![sql_agent](images/sql_agent.png)
 
-We will use the [Sakila](https://github.com/jOOQ/sakila) public database. The Sakila database is a nicely normalised database modelling a DVD rental store (for those of you old enough to remember what that is). Its design includes a few nice features:
+We will upload the [Sakila](https://github.com/jOOQ/sakila) public database to SnowFlake. The Sakila database is a nicely normalised database modelling a DVD rental store (for those of you old enough to remember what that is). Its design includes a few nice features:
 
 + Many to many relationships.
 + Multiple paths between entities (e.g. film-inventory-rental-payment vs film-inventory-store-customer-payment) to practice joins.
@@ -32,7 +32,7 @@ Besides, we'll use public [Query Practices](https://github.com/erzubin/MySQL/blo
 + [LangChain](https://www.langchain.com/)
 + [OpenAI](https://openai.com/)
 + [SQLAlchemy](https://www.sqlalchemy.org/)
-+ [MySQL](https://www.mysql.com/)
++ [SnowFlake](https://www.snowflake.com/es/)
 
 
 ### How to use this repo
@@ -42,5 +42,5 @@ First, we need to store the OpenAI API KEY in a `.env` file to load it with the 
 
 **Getting a response for a user query**
 ```bash
-python chat.py -p "Which actors have the first name ‘Scarlett’?"
+python chat.py -p "Which actors have the first name ‘SCARLETT’?"
 ```

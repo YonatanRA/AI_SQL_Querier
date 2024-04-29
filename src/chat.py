@@ -21,14 +21,17 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
-LANGUAGE = os.getenv("LANGUAGE")
-DB_USER = os.getenv("DB_USER")
-PASSWORD = os.getenv("PASSWORD")
-SERVER = os.getenv("SERVER")
-DATABASE = os.getenv("DATABASE")
+snowflake_account = os.getenv("snowflake_account")
+username = os.getenv("username")
+password = os.getenv("password")
+database = os.getenv("database")
+schema = os.getenv("schema")
+warehouse = os.getenv("warehouse")
+role = os.getenv("role")
 
 
-URI = f"{LANGUAGE}://{DB_USER}:{PASSWORD}@{SERVER}/{DATABASE}"
+URI = f"snowflake://{username}:{password}@{snowflake_account}/{database}/{schema}?warehouse={warehouse}&role={role}"
+    
     
 
 # query argparsing
@@ -52,12 +55,14 @@ def get_sql_response(prompt: str) -> str:
 
     global OPENAI_API_KEY, URI
 
+    prompt = prompt + " Add `` to table name"
+
     logger.info("SQL Connection")
     cursor = create_engine(URI).connect()
 
     logger.info("Extracting tables...")
     tables = cursor.execute("show tables;").fetchall()
-    tables = [e[0] for e in tables]
+    tables = [e[1] for e in tables]
 
     logger.info("Generating SQL query...")
     db = SQLDatabase.from_uri(URI,
