@@ -21,15 +21,15 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
-LANGUAGE = "mysql+pymysql"
-USER = "root"
-PASSWORD = "password"
-SERVER = "localhost:3306"
-DATABASE = "sakila"
+LANGUAGE = os.getenv("LANGUAGE")
+DB_USER = os.getenv("DB_USER")
+PASSWORD = os.getenv("PASSWORD")
+SERVER = os.getenv("SERVER")
+DATABASE = os.getenv("DATABASE")
 
 
-URI = f"{LANGUAGE}://{USER}:{PASSWORD}@{SERVER}/{DATABASE}"
-
+URI = f"{LANGUAGE}://{DB_USER}:{PASSWORD}@{SERVER}/{DATABASE}"
+    
 
 # query argparsing
 argparser = argparse.ArgumentParser(description="User Question")
